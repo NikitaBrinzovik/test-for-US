@@ -25,8 +25,8 @@ export const authReducer = (state = initialState, action) => {
 }
 
 // actions
-export const getLoginAC = (data) => ({getLogin, data})
-export const redirectAC = (data) => ({redirect, data})
+export const getLoginAC = (data) => ({...getLogin, data})
+export const redirectAC = (data) => ({...redirect, data})
 
 // thunks
 export const loginTC = () => (dispatch) => {
