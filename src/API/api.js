@@ -1,18 +1,26 @@
-//Заготовка под расширение
-export const authAPI = {
 
+export const authAPI = {
     login() {
         const promise = new Promise((resolve, reject) => {
-
             setTimeout(() => {
                 debugger
                 resolve(true);
-            }, 1000);
+            }, randomDelay(500, 1500));
 
         });
-        debugger
         return promise
     },
+    logout() {
+        const logout = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(false);
+            }, randomDelay(500, 1500));
+        });
+        return logout
+    },
+}
+const randomDelay = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 

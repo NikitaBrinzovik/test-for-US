@@ -25,16 +25,16 @@ export const authReducer = (state = initialState, action) => {
 }
 
 // actions
-export const getLoginAC = (data) => ({getLogin, data})
-export const redirectAC = (data) => ({redirect, data})
+export const getLoginAC = (data) => ({...getLogin, data})
+export const redirectAC = (data) => ({...redirect, data})
 
 // thunks
-export const loginTC = () => (dispatch) => {
-    //dispatch(redirectAC(true)) -можно так
-
-    //Заготовка под расширение
+export const loginTC = (values) => (dispatch) => {
+    // dispatch(redirectAC(true)) -можно так, специально подготовил для расширения приложения
     authAPI.login()
         .then((data) => {
+            debugger
+            dispatch(getLoginAC(values.login))
             dispatch(redirectAC(data))
         })
         .catch((error) => {
@@ -42,3 +42,13 @@ export const loginTC = () => (dispatch) => {
         })
 }
 
+export const logoutTC = () => (dispatch) => {
+    authAPI.logout()
+        .then((data) => {
+            dispatch(getLoginAC(""))
+            dispatch(redirectAC(data))
+        })
+        .catch((error) => {
+            alert(error)
+        })
+}
