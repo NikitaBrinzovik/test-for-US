@@ -23,10 +23,8 @@ const App = () => {
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
-                    <Typography variant="h6">
-                        Hello! This is a testing task
-                    </Typography>
-                    {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Logout</Button>}
+                    {!isLoggedIn && <Typography variant="h5">Hello! This is a testing task</Typography>}
+                    {isLoggedIn && <IconButton color="inherit"  onClick={logoutHandler}>Logout</IconButton>}
                 </Toolbar>
             </AppBar>
 

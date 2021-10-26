@@ -4,7 +4,7 @@ import {Redirect} from "react-router-dom";
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@material-ui/core'
 import {useFormik} from "formik";
 import st from './MainPage.module.css'
-import {loginTC} from "./Auth-Reducer";
+import {getLoginAC, loginTC} from "./Auth-Reducer";
 
 //Я бы переименовал компоненту (и директорию соответсвенно) в Login, но в ТЗ указана "Главная страница"
 export const MainPage = () => {
@@ -33,6 +33,7 @@ export const MainPage = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(values))
+            dispatch(getLoginAC(values.login))
             formik.resetForm();
         }
     })
