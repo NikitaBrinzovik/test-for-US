@@ -2,7 +2,16 @@
 export const authAPI = {
 
     login() {
-        return true
+        const promise = new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                debugger
+                resolve(true);
+            }, 1000);
+
+        });
+        debugger
+        return promise
     },
 }
 

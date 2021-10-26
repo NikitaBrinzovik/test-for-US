@@ -4,6 +4,8 @@ const initialState = {
     isLoggedIn: false,
     pasteLogin: ""
 }
+const getLogin = {type: "GET_LOGIN"}
+const redirect = {type: "REDIRECT"}
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -13,18 +15,18 @@ export const authReducer = (state = initialState, action) => {
                 isLoggedIn: action.data
             }
         case "GET_LOGIN":
-                return {
-                    ...state,
-                    pasteLogin: action.data
-                }
+            return {
+                ...state,
+                pasteLogin: action.data
+            }
         default:
             return state
     }
 }
 
 // actions
-export const getLoginAC = (data) => ({type:"GET_LOGIN", data})
-export const redirectAC = (data) => ({type:"REDIRECT", data})
+export const getLoginAC = (data) => ({getLogin, data})
+export const redirectAC = (data) => ({redirect, data})
 
 // thunks
 export const loginTC = () => (dispatch) => {
@@ -32,7 +34,11 @@ export const loginTC = () => (dispatch) => {
 
     //Заготовка под расширение
     authAPI.login()
-        .then(dispatch(redirectAC(true)))
-        .catch((error) => {alert(error)})
+        .then((data) => {
+            dispatch(redirectAC(data))
+        })
+        .catch((error) => {
+            alert(error)
+        })
 }
 
